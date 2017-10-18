@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+//#include "../JuceLibraryCode/JuceHeader.h"
 
 namespace easy {
 class Button : public juce::Component, public juce::Button::Listener {
@@ -58,30 +58,6 @@ void Button::buttonClicked(juce::Button *button) {
   } else {
     _button.setButtonText("ON");
   }
-
-  //   enum ColourIds
-  //    {
-  //        buttonColourId                  = 0x1000100,  /**< The colour used
-  //        to fill the button shape (when the button is toggled
-  //                                                           'off'). The
-  //                                                           look-and-feel
-  //                                                           class might
-  //                                                           re-interpret this
-  //                                                           to add effects,
-  //                                                           etc. */
-  //        buttonOnColourId                = 0x1000101,  /**< The colour used
-  //        to fill the button shape (when the button is toggled
-  //                                                           'on'). The
-  //                                                           look-and-feel
-  //                                                           class might
-  //                                                           re-interpret this
-  //                                                           to add effects,
-  //                                                           etc. */
-  //        textColourOffId                 = 0x1000102,  /**< The colour to use
-  //        for the button's text when the button's toggle state is "off". */
-  //        textColourOnId                  = 0x1000103   /**< The colour to use
-  //        for the button's text.when the button's toggle state is "on". */
-  //    };
 }
 
 void Button::resized() {
