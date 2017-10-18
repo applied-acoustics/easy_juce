@@ -11,12 +11,12 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "Effect.h"
 
 //==============================================================================
 /**
 */
-class GainAudioProcessor  : public AudioProcessor
+class GainAudioProcessor  : public easy::AudioProcessor
 {
 public:
     //==============================================================================
@@ -56,7 +56,11 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+protected:
+    void parameterChanged(const juce::String &id, float value) override;
+
 private:
+    Effect _effect;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainAudioProcessor)
 };

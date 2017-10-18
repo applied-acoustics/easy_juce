@@ -21,6 +21,8 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="vR5FIX" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="Tz73Nt" name="Effect.cpp" compile="1" resource="0" file="Source/Effect.cpp"/>
+    <FILE id="IbKC8F" name="Effect.h" compile="0" resource="0" file="Source/Effect.h"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">

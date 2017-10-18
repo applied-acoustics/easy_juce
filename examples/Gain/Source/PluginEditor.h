@@ -17,7 +17,7 @@
 //==============================================================================
 /**
 */
-class GainAudioProcessorEditor  : public AudioProcessorEditor
+class GainAudioProcessorEditor  : public easy::AudioProcessorEditor
 {
 public:
     GainAudioProcessorEditor (GainAudioProcessor&);

@@ -11,11 +11,10 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-
 //==============================================================================
 GainAudioProcessor::GainAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     : easy::AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  AudioChannelSet::stereo(), true)
@@ -25,10 +24,27 @@ GainAudioProcessor::GainAudioProcessor()
                        )
 #endif
 {
+    addFloatParameter("Gain", 0.0f, 1.0f, 1.0f);
+    addFloatParameter("Pan", 0.0f, 1.0f, 0.5f);
+    addIntParameter("Choice", 0, 2, 0);
+    addIntParameter("Active", 0, 1, 1);
 }
 
 GainAudioProcessor::~GainAudioProcessor()
 {
+}
+
+
+void GainAudioProcessor::parameterChanged(const juce::String &id, float value) {
+    if(id == "Gain") {
+        _effect.setGain(value);
+    } else if(id == "Pan") {
+        _effect.setPan(value);
+    } else if(id == "Choice") {
+        _effect.setChoice(value);
+    } else if(id == "Active") {
+        _effect.setOnOff(value);
+    }
 }
 
 //==============================================================================
@@ -98,6 +114,7 @@ void GainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    _effect.init(sampleRate);
 }
 
 void GainAudioProcessor::releaseResources()
@@ -145,14 +162,7 @@ void GainAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mi
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        float* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
-    }
+    _effect.process(buffer, midiMessages);
 }
 
 //==============================================================================
