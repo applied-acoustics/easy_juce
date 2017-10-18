@@ -1,7 +1,7 @@
 # easy_juce
 Create fast Juce project for prototyping
 
-## How to setup.
+# How to setup.
 
 - Create a Juce audio plug-in project.
 
@@ -45,4 +45,58 @@ void resized()
 
 That's it for the setup. You're now ready to add parameters to your plug-in.
 
-## How to use.
+# How to use.
+
+## Add a slider parameter.
+
+#### PluginProcessor
+In the constructor of PluginProcessor.cpp add a float parameter :
+
+```cpp
+addFloatParameter("Gain", 0.0f, 1.0f, 1.0f);
+```
+
+Then in the `parameterChanged()` method you can implement the logic for the parameter change.
+
+```cpp
+void EffectAudioProcessor::parameterChanged(const juce::String &id, float value) {
+  if(id == "Gain") {
+    // Do something with Gain value.
+  } 
+}
+```
+
+#### PluginEditor
+In the constructor of the editor in PluginEditor.cpp, you only need to add a slider _with the same name as the one created in PluginProcessor_.
+
+```cpp
+addSlider("Gain");
+```
+
+## Add a combo box parameter.
+
+#### PluginProcessor
+In the constructor of PluginProcessor.cpp add a int parameter :
+
+```cpp
+addIntParameter("Choice", 0, 2, 0);
+```
+
+Then in the `parameterChanged()` method you can implement the logic for the parameter change.
+
+```cpp
+void EffectAudioProcessor::parameterChanged(const juce::String &id, float value) {
+  if(id == "Gain") {
+    // Do something with Gain value.
+  } else if(id == "Choice") {
+  	// Do something with Choice value.
+  }
+}
+```
+
+#### PluginEditor
+In the constructor of the editor in PluginEditor.cpp, you only need to add a combo box _with the same name as the one created in PluginProcessor_. The number of choice has to be as the range given in PluginProcessor.
+
+```cpp
+addComboBox("Choice", {"A", "B", "C"});
+```
