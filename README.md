@@ -89,7 +89,7 @@ void EffectAudioProcessor::parameterChanged(const juce::String &id, float value)
   if(id == "Gain") {
     // Do something with Gain value.
   } else if(id == "Choice") {
-  	// Do something with Choice value.
+    // Do something with Choice value.
   }
 }
 ```
