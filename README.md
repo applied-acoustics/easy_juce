@@ -1,7 +1,7 @@
 # easy_juce
 Create fast Juce project for prototyping
 
-## How to use.
+## How to setup.
 
 - Create a Juce audio plug-in project.
 
@@ -17,7 +17,7 @@ Create fast Juce project for prototyping
 
 ![Change constructor](/readme_images/plugin_editor_constructor.png?raw=true "Change constructor")
 
-- In the generated PluginProcessor files. Change parent from `AudioProcessor` to `easy:: AudioProcessor ` in PluginProcessor.h and do the same thing for the constructor in PluginProcessor.cpp.
+- In the generated PluginProcessor files. Change parent from `AudioProcessor` to `easy::AudioProcessor ` in PluginProcessor.h and do the same thing for the constructor in PluginProcessor.cpp.
 
 ![Change heritage](/readme_images/audio_heritage.png?raw=true "Change heritage")
 
@@ -38,3 +38,11 @@ void resized()
 ```
 
 ![Resize and repaint](/readme_images/resize_and_repaint.png?raw=true "Resize and repaint")
+
+- Finally go back to PluginProcessor.h and override the `void parameterChanged(const juce::String &id, float value)` method and implement it in the .cpp file.
+
+![Overload](/readme_images/param.png?raw=true "Overload")
+
+That's it for the setup. You're now ready to add parameters to your plug-in.
+
+## How to use.
