@@ -67,7 +67,7 @@ void EffectAudioProcessor::parameterChanged(const juce::String &id, float value)
 ```
 
 #### PluginEditor
-In the constructor of the editor in PluginEditor.cpp, you only need to add a slider _with the same name as the one created in PluginProcessor_.
+In the constructor of the editor in PluginEditor.cpp, you only need to add a slider **with the same name as the one created in PluginProcessor**.
 
 ```cpp
 addSlider("Gain");
@@ -95,7 +95,7 @@ void EffectAudioProcessor::parameterChanged(const juce::String &id, float value)
 ```
 
 #### PluginEditor
-In the constructor of the editor in PluginEditor.cpp, you only need to add a combo box _with the same name as the one created in PluginProcessor_. The number of choice has to be as the range given in PluginProcessor.
+In the constructor of the editor in PluginEditor.cpp, you only need to add a combo box **with the same name as the one created in PluginProcessor**. The number of choice has to be as the range given in PluginProcessor.
 
 ```cpp
 addComboBox("Choice", {"A", "B", "C"});
