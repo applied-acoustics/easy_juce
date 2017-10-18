@@ -7,6 +7,34 @@ Create fast Juce project for prototyping
 
 ![Create project](/readme_images/choose_project.png?raw=true "Create project")
 
-- Add easy module by add `easy_juce/easy` folder.
+- Add easy module by adding `easy_juce/easy` folder.
 
 ![Add Module](/readme_images/add_module.png?raw=true "Add module")
+
+- In the generated PluginEditor files. Change parent from `AudioProcessorEditor` to `easy::AudioProcessorEditor` in PluginEditor.h and do the same thing for the constructor in PluginEditor.cpp.
+
+![Change heritage](/readme_images/plugin_editor_heritage.png?raw=true "Change heritage")
+
+![Change constructor](/readme_images/plugin_editor_constructor.png?raw=true "Change constructor")
+
+- In the generated PluginProcessor files. Change parent from `AudioProcessor` to `easy:: AudioProcessor ` in PluginProcessor.h and do the same thing for the constructor in PluginProcessor.cpp.
+
+![Change heritage](/readme_images/audio_heritage.png?raw=true "Change heritage")
+
+![Change constructor](/readme_images/audio_constructor.png?raw=true "Change constructor")
+
+- Then go back to PluginEditor.cpp and add replace the `resized()` and `paint()` function with this code :
+
+```cpp
+void paint (Graphics& g)
+{
+    g.fillAll ({180, 180, 180});
+}
+
+void resized()
+{
+    resize();
+}
+```
+
+![Resize and repaint](/readme_images/resize_and_repaint.png?raw=true "Resize and repaint")
