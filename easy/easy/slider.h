@@ -23,8 +23,7 @@ private:
  * Implementation.
  */
 Slider::Slider(const juce::String &name,
-               juce::AudioProcessorValueTreeState &parameters)
-{
+               juce::AudioProcessorValueTreeState &parameters) {
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
   _label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));
@@ -39,15 +38,11 @@ Slider::Slider(const juce::String &name,
           parameters, name, _slider);
 }
 
-void Slider::resized()
-{
+void Slider::resized() {
   _label.setBounds(0, 0, 80, getHeight());
   _slider.setBounds(_label.getRight(), 0, getWidth() - _label.getWidth(),
                     getHeight());
 }
 
-void Slider::paint(juce::Graphics &gc)
-{
-  gc.fillAll({180, 180, 180});
-}
+void Slider::paint(juce::Graphics &gc) { gc.fillAll({180, 180, 180}); }
 } // namespace easy

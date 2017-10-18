@@ -11,11 +11,10 @@
 // website:          www.applied-acoustics.com
 // license:          GPL/Commercial
 //
-// dependencies:     juce_core, juce_audio_basics, juce_events, juce_audio_processors, juce_graphics, juce_audio_devices
-// OSXFrameworks:    CoreAudio CoreMIDI DiscRecording
-// iOSFrameworks:    CoreAudio CoreMIDI AudioToolbox AVFoundation
-// linuxLibs:
-// mingwLibs:
+// dependencies:     juce_core, juce_audio_basics, juce_events,
+// juce_audio_processors, juce_graphics, juce_audio_devices OSXFrameworks:
+// CoreAudio CoreMIDI DiscRecording iOSFrameworks:    CoreAudio CoreMIDI
+// AudioToolbox AVFoundation linuxLibs: mingwLibs:
 //
 // END_JUCE_MODULE_DECLARATION
 
@@ -33,13 +32,12 @@
 #include <juce_opengl/juce_opengl.h>
 #include <juce_video/juce_video.h>
 
-#include <vector>
 #include <memory>
+#include <vector>
 
-#include "easy/slider.h"
-#include "easy/combobox.h"
 #include "easy/button.h"
+#include "easy/combobox.h"
+#include "easy/slider.h"
 
-#include "easy/processor.h"
 #include "easy/editor.h"
-
+#include "easy/processor.h"

@@ -23,8 +23,7 @@ private:
  */
 ComboBox::ComboBox(const juce::String &name,
                    juce::AudioProcessorValueTreeState &parameters,
-                   const std::vector<juce::String> &choices)
-{
+                   const std::vector<juce::String> &choices) {
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
   _label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));
@@ -46,15 +45,11 @@ ComboBox::ComboBox(const juce::String &name,
           parameters, name, _box);
 }
 
-void ComboBox::resized()
-{
+void ComboBox::resized() {
   _label.setBounds(0, 0, 80, getHeight());
   _box.setBounds(_label.getRight() + 10, 0, getWidth() - _label.getWidth() - 10,
                  getHeight());
 }
 
-void ComboBox::paint(juce::Graphics &gc)
-{
-  gc.fillAll({180, 180, 180});
-}
+void ComboBox::paint(juce::Graphics &gc) { gc.fillAll({180, 180, 180}); }
 } // namespace easy
