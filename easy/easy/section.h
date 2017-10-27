@@ -17,6 +17,7 @@ private:
  * Implementation.
  */
 Section::Section(const juce::String &name) {
+  setName(name);
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
   _label.setJustificationType(juce::Justification::centred);

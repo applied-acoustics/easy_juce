@@ -24,6 +24,7 @@ private:
  */
 Slider::Slider(const juce::String &name,
                juce::AudioProcessorValueTreeState &parameters) {
+  setName(name);
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
   _label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));

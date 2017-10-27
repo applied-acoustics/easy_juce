@@ -24,6 +24,7 @@ private:
 ComboBox::ComboBox(const juce::String &name,
                    juce::AudioProcessorValueTreeState &parameters,
                    const std::vector<juce::String> &choices) {
+  setName(name);
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
   _label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));

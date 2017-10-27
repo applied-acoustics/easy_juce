@@ -16,11 +16,24 @@ public:
 
   inline void addSection(const juce::String &name);
 
+  inline void setParameterVisibility(const juce::String &name, bool visible);
+
   inline void resize();
 
 private:
   easy::AudioProcessor &_easy_proc;
   std::vector<juce::ScopedPointer<juce::Component>> _children;
+
+  inline int getNumberOfVisibleParameters() const {
+    int num = 0;
+    for (auto &n : _children) {
+      if (n->isVisible()) {
+        num++;
+      }
+    }
+
+    return num;
+  }
 };
 
 /*
@@ -35,15 +48,18 @@ AudioProcessorEditor::AudioProcessorEditor(easy::AudioProcessor *easy_proc)
 void AudioProcessorEditor::resize() {
   int y = 5;
   for (auto child : getChildren()) {
-    child->setBounds(5, y, getWidth() - 10, 20);
-    y += 25;
+    if (child->isVisible()) {
+      child->setBounds(5, y, getWidth() - 10, 20);
+      y += 25;
+    }
   }
 }
 
 void AudioProcessorEditor::addSlider(const juce::String &name) {
   _children.push_back(new easy::Slider(name, _easy_proc.getParametersState()));
   addAndMakeVisible(_children.back());
-  setSize(600, 10 + (int)_children.size() * 25);
+
+  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addComboBox(
@@ -51,18 +67,32 @@ void AudioProcessorEditor::addComboBox(
   _children.push_back(
       new ComboBox(name, _easy_proc.getParametersState(), choices));
   addAndMakeVisible(_children.back());
-  setSize(600, 10 + (int)_children.size() * 25);
+
+  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addToggle(const juce::String &name) {
   _children.push_back(new easy::Button(name, _easy_proc.getParametersState()));
   addAndMakeVisible(_children.back());
-  setSize(600, 10 + (int)_children.size() * 25);
+
+  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addSection(const juce::String &name) {
   _children.push_back(new easy::Section(name));
   addAndMakeVisible(_children.back());
-  setSize(600, 10 + (int)_children.size() * 25);
+
+  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+}
+
+void AudioProcessorEditor::setParameterVisibility(const juce::String &name,
+                                                  bool visible) {
+  for (auto &n : _children) {
+    if (n->getName() == name) {
+      n->setVisible(visible);
+    }
+  }
+
+  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
 }
 } // namespace easy
