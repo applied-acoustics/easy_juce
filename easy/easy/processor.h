@@ -1,10 +1,12 @@
 #pragma once
+#include <iostream>
 
 namespace easy {
 class AudioProcessor : public juce::AudioProcessor,
                        public juce::AudioProcessorValueTreeState::Listener {
 public:
-  inline AudioProcessor() : _parameters(*this, nullptr) {}
+  inline AudioProcessor() : _parameters(*this, nullptr) {
+  }
 
   inline AudioProcessor(const juce::AudioProcessor::BusesProperties &ioLayouts)
       : juce::AudioProcessor(ioLayouts), _parameters(*this, nullptr) {}
@@ -20,6 +22,54 @@ public:
 
   inline juce::AudioProcessorValueTreeState &getParametersState() {
     return _parameters;
+  }
+
+  void getStateInformation(juce::MemoryBlock &destData) override {
+    juce::String json =
+        "{ \"preset\" : {\n\t\"version\" : \"0.0.1\",\n\t\"easy_juce\" : {\n";
+    {
+      for (int i = 0; i < getNumParameters() - 1; i++) {
+        juce::String str = getParameterName(i);
+        juce::String name = getParameterName(i);
+        float value = *_parameters.getRawParameterValue(str);
+        json += "\t\t\"" + str + "\" : " + juce::String(value) + ",\n";
+      }
+
+      // Last element.
+      int i = getNumParameters() - 1;
+      juce::String str = getParameterName(i);
+      juce::String name = getParameterName(i);
+      float value = *_parameters.getRawParameterValue(str);
+      json += "\t\t\"" + str + "\" : " + juce::String(value) + "\n\t}\n}}";
+    }
+
+    destData = juce::MemoryBlock(json.toUTF8(), json.length() + 1);
+  }
+
+  void setUnnormalizedValue(const juce::String &name, float value) {
+    if (juce::AudioProcessorParameter *p = _parameters.getParameter(name)) {
+      const float newValue =
+          _parameters.getParameterRange(name).convertTo0to1(value);
+      p->setValueNotifyingHost(newValue);
+    }
+  }
+
+  void setStateInformation(const void *raw_data, int sizeInBytes) override {
+    juce::String json =
+        juce::String::createStringFromData(raw_data, (int)sizeInBytes);
+    juce::var data;
+    juce::Result result = juce::JSON::parse(json, data);
+
+    if (result) {
+      const juce::var &preset = data["preset"];
+      const juce::var &objeq = preset["easy_juce"];
+
+      for (int i = 0; i < getNumParameters(); i++) {
+        const juce::String name = getParameterName(i);
+        const float value = objeq[name.toStdString().c_str()];
+        setUnnormalizedValue(name, value);
+      }
+    }
   }
 
 protected:
