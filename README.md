@@ -26,18 +26,20 @@ Create fast Juce project for prototyping
 - Then go back to PluginEditor.cpp and add replace the `resized()` and `paint()` function with this code :
 
 ```cpp
-void paint (Graphics& g)
+void YOUR_CLASS_NAME::paint (Graphics& g)
 {
     g.fillAll ({180, 180, 180});
 }
 
-void resized()
+void YOUR_CLASS_NAME::resized()
 {
     resize();
 }
 ```
 
 ![Resize and repaint](/readme_images/resize_and_repaint.png?raw=true "Resize and repaint")
+
+- Then delete `void getStateInformation(MemoryBlock&);` and `void setStateInformation(const void*, int)` functions from both PluginProcessor.h and PluginProcessor.cpp.
 
 - Finally go back to PluginProcessor.h and override the `void parameterChanged(const juce::String &id, float value)` method and implement it in the .cpp file.
 
