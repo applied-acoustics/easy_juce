@@ -14,6 +14,8 @@ protected:
   inline void paint(juce::Graphics &gc) override;
 
 private:
+  juce::Label _min_label;
+  juce::Label _max_label;
   juce::Label _label;
   juce::Slider _slider;
   std::shared_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
@@ -43,12 +45,32 @@ Slider::Slider(const juce::String &name,
   _slider_attachement =
       std::make_shared<juce::AudioProcessorValueTreeState::SliderAttachment>(
           parameters, name, _slider);
+
+  addAndMakeVisible(_min_label);
+  _min_label.setText(juce::String(_slider.getMinimum()),
+  juce::NotificationType::dontSendNotification);
+  _min_label.setFont(juce::Font(10));
+  _min_label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));
+  _min_label.setColour(juce::Label::outlineColourId, {142, 152, 155});
+  _min_label.setColour(juce::Label::textColourId, {0, 0, 0});
+  _min_label.setJustificationType(juce::Justification::centred);
+
+  addAndMakeVisible(_max_label);
+  _max_label.setText(juce::String(_slider.getMaximum()),
+    juce::NotificationType::dontSendNotification);
+  _max_label.setFont(juce::Font(10));
+  _max_label.setBorderSize(juce::BorderSize<int>(1, 1, 1, 1));
+  _max_label.setColour(juce::Label::outlineColourId, {142, 152, 155});
+  _max_label.setColour(juce::Label::textColourId, {0, 0, 0});
+  _max_label.setJustificationType(juce::Justification::centred);
 }
 
 void Slider::resized() {
   _label.setBounds(0, 0, 170, getHeight());
-  _slider.setBounds(_label.getRight(), 0, getWidth() - _label.getWidth(),
+  _min_label.setBounds(_label.getRight() - 1, 0, 50, getHeight());
+  _slider.setBounds(_min_label.getRight(), 0, getWidth() - _label.getWidth() - 100,
                     getHeight());
+  _max_label.setBounds(_slider.getRight() - 1, 0, 50, getHeight());
 }
 
 void Slider::paint(juce::Graphics &gc) { gc.fillAll({180, 180, 180}); }

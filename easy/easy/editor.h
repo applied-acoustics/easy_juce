@@ -62,7 +62,7 @@ void AudioProcessorEditor::addSlider(const juce::String &name,
                                        suffix));
   addAndMakeVisible(_children.back());
 
-  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+  setSize(800, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addComboBox(
@@ -71,21 +71,21 @@ void AudioProcessorEditor::addComboBox(
       new ComboBox(name, _easy_proc.getParametersState(), choices));
   addAndMakeVisible(_children.back());
 
-  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+  setSize(800, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addToggle(const juce::String &name) {
   _children.push_back(new easy::Button(name, _easy_proc.getParametersState()));
   addAndMakeVisible(_children.back());
 
-  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+  setSize(800, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::addSection(const juce::String &name) {
   _children.push_back(new easy::Section(name));
   addAndMakeVisible(_children.back());
 
-  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+  setSize(800, 10 + getNumberOfVisibleParameters() * 25);
 }
 
 void AudioProcessorEditor::setParameterVisibility(const juce::String &name,
@@ -96,6 +96,6 @@ void AudioProcessorEditor::setParameterVisibility(const juce::String &name,
     }
   }
 
-  setSize(600, 10 + getNumberOfVisibleParameters() * 25);
+  setSize(800, 10 + getNumberOfVisibleParameters() * 25);
 }
 } // namespace easy

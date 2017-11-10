@@ -24,7 +24,7 @@ GainAudioProcessor::GainAudioProcessor()
                        )
 #endif
 {
-    addFloatParameter("Gain", 0.0f, 1.0f, 1.0f);
+    addFloatParameter("Gain", 0.145f, 1.0f, 1.0f);
     addFloatParameter("Pan", 0.0f, 1.0f, 0.5f);
     addIntParameter("Choice", 0, 2, 0);
     addIntParameter("Active", 0, 1, 1);
