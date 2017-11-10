@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="tfwm2k" name="Gain" displaySplashScreen="1" reportAppUsage="1"
+<JUCERPROJECT id="tfwm2k" name="Gain" displaySplashScreen="0" reportAppUsage="0"
               splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.yourcompany.Gain" includeBinaryInAppConfig="1"
+              bundleIdentifier="com.alex.Gain" includeBinaryInAppConfig="1"
               cppLanguageStandard="11" buildVST="1" buildVST3="0" buildAU="1"
               buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="1"
-              enableIAA="0" pluginName="Gain" pluginDesc="Gain" pluginManufacturer="yourcompany"
-              pluginManufacturerCode="Manu" pluginCode="Tfwm" pluginChannelConfigs=""
-              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              enableIAA="0" pluginName="Gain" pluginDesc="Gain" pluginManufacturer="Alexandre"
+              pluginManufacturerCode="Akkk" pluginCode="Tghj" pluginChannelConfigs="{2, 2}"
+              pluginIsSynth="0" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="GainAU"
-              pluginRTASCategory="" aaxIdentifier="com.yourcompany.Gain" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              pluginRTASCategory="" aaxIdentifier="com.alex.Gain" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
               jucerVersion="5.1.2">
   <MAINGROUP id="ebxUoz" name="Gain">
     <GROUP id="{480D2FF7-7A2C-5B5F-F4A4-DD36AEDFCC7B}" name="Source">

@@ -6,7 +6,8 @@ namespace easy {
 class Slider : public juce::Component {
 public:
   inline Slider(const juce::String &name,
-                juce::AudioProcessorValueTreeState &parameters);
+                juce::AudioProcessorValueTreeState &parameters,
+                const juce::String& suffix = "");
 
 protected:
   inline void resized() override;
@@ -23,7 +24,8 @@ private:
  * Implementation.
  */
 Slider::Slider(const juce::String &name,
-               juce::AudioProcessorValueTreeState &parameters) {
+               juce::AudioProcessorValueTreeState &parameters,
+               const juce::String& suffix) {
   setName(name);
   addAndMakeVisible(_label);
   _label.setText(name, juce::NotificationType::dontSendNotification);
@@ -34,13 +36,17 @@ Slider::Slider(const juce::String &name,
   addAndMakeVisible(_slider);
   _slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxRight,
                           false, 80, 20);
+  if(!suffix.isEmpty()) {
+    _slider.setTextValueSuffix(suffix);
+  }
+
   _slider_attachement =
       std::make_shared<juce::AudioProcessorValueTreeState::SliderAttachment>(
           parameters, name, _slider);
 }
 
 void Slider::resized() {
-  _label.setBounds(0, 0, 80, getHeight());
+  _label.setBounds(0, 0, 170, getHeight());
   _slider.setBounds(_label.getRight(), 0, getWidth() - _label.getWidth(),
                     getHeight());
 }

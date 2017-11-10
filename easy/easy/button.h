@@ -62,7 +62,7 @@ void Button::buttonClicked(juce::Button *button) {
 }
 
 void Button::resized() {
-  _label.setBounds(0, 0, 80, getHeight());
+  _label.setBounds(0, 0, 170, getHeight());
   _button.setBounds(_label.getRight() + 10, 0,
                     getWidth() - _label.getWidth() - 10, getHeight());
 }

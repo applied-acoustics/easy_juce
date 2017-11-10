@@ -7,7 +7,8 @@ public:
 
   inline AudioProcessorEditor(easy::AudioProcessor *easy_proc);
 
-  inline void addSlider(const juce::String &name);
+  inline void addSlider(const juce::String &name,
+                        const juce::String& suffix = "");
 
   inline void addComboBox(const juce::String &name,
                           const std::vector<juce::String> &choices);
@@ -55,8 +56,10 @@ void AudioProcessorEditor::resize() {
   }
 }
 
-void AudioProcessorEditor::addSlider(const juce::String &name) {
-  _children.push_back(new easy::Slider(name, _easy_proc.getParametersState()));
+void AudioProcessorEditor::addSlider(const juce::String &name,
+                                     const juce::String& suffix) {
+  _children.push_back(new easy::Slider(name, _easy_proc.getParametersState(),
+                                       suffix));
   addAndMakeVisible(_children.back());
 
   setSize(600, 10 + getNumberOfVisibleParameters() * 25);
