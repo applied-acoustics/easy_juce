@@ -47,7 +47,7 @@ ComboBox::ComboBox(const juce::String &name,
 }
 
 void ComboBox::resized() {
-  _label.setBounds(0, 0, 170, getHeight());
+  _label.setBounds(0, 0, 200, getHeight());
   _box.setBounds(_label.getRight() + 10, 0, getWidth() - _label.getWidth() - 10,
                  getHeight());
 }

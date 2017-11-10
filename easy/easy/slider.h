@@ -66,7 +66,7 @@ Slider::Slider(const juce::String &name,
 }
 
 void Slider::resized() {
-  _label.setBounds(0, 0, 170, getHeight());
+  _label.setBounds(0, 0, 200, getHeight());
   _min_label.setBounds(_label.getRight() - 1, 0, 50, getHeight());
   _slider.setBounds(_min_label.getRight(), 0, getWidth() - _label.getWidth() - 100,
                     getHeight());
