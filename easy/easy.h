@@ -38,6 +38,7 @@
 #include "easy/button.h"
 #include "easy/combobox.h"
 #include "easy/slider.h"
+#include "easy/slider_2d.h"
 #include "easy/section.h"
 
 #include "easy/processor.h"

@@ -8,33 +8,27 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
-
-
-//==============================================================================
-GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
-    : easy::AudioProcessorEditor (&p), processor (p)
-{
-    addSection("Mixer");
-    addSlider("Gain");
-    addSlider("Pan");
-    addComboBox("Choice", {"Both", "Left", "Right"});
-    addToggle("Active");
-}
-
-GainAudioProcessorEditor::~GainAudioProcessorEditor()
-{
-}
+#include "PluginProcessor.h"
 
 //==============================================================================
-void GainAudioProcessorEditor::paint (Graphics& g)
-{
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll ({180, 180, 180});
+GainAudioProcessorEditor::GainAudioProcessorEditor(GainAudioProcessor &p)
+    : easy::AudioProcessorEditor(&p), processor(p) {
+  addSection("Mixer");
+  addSlider("Gain");
+  addSlider("Pan");
+  addComboBox("Choice", {"Both", "Left", "Right"});
+  addSlider2D("Room", "X", "Y");
+  addToggle("Active");
 }
 
-void GainAudioProcessorEditor::resized()
-{
-  resize();
+GainAudioProcessorEditor::~GainAudioProcessorEditor() {}
+
+//==============================================================================
+void GainAudioProcessorEditor::paint(Graphics &g) {
+  // (Our component is opaque, so we must completely fill the background with a
+  // solid colour)
+  g.fillAll({180, 180, 180});
 }
+
+void GainAudioProcessorEditor::resized() { resize(); }
