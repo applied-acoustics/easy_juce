@@ -1,7 +1,5 @@
 #pragma once
 
-//#include "../JuceLibraryCode/JuceHeader.h"
-
 namespace easy {
 class Button : public juce::Component, public juce::Button::Listener {
 public:

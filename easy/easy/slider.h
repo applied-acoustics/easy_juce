@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
 namespace easy {
 class Slider : public juce::Component {
 public:

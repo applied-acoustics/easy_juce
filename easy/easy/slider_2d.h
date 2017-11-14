@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
 namespace easy {
 class Slider2DWidget : public juce::Component, public juce::Slider::Listener {
 public:
@@ -15,11 +13,17 @@ public:
   inline void SetXSlider(juce::Slider *x_slider) {
     _x_slider = x_slider;
     _x_slider->addListener(this);
+    _normalized_x_value = (x_slider->getValue() - x_slider->getMinimum()) /
+                          (x_slider->getMaximum() - x_slider->getMinimum());
   }
 
   inline void SetYSlider(juce::Slider *y_slider) {
     _y_slider = y_slider;
     _y_slider->addListener(this);
+
+    _normalized_y_value =
+        1.0 - ((y_slider->getValue() - y_slider->getMinimum()) /
+               (y_slider->getMaximum() - y_slider->getMinimum()));
   }
 
 protected:
@@ -138,27 +142,27 @@ Slider2D::Slider2D(const juce::String &name, const juce::String &x_slider_name,
   _label.setJustificationType(juce::Justification::centred);
 
   addAndMakeVisible(_slider);
-  _slider.SetYSlider(&_y_slider);
+
+  _x_slider_attachement =
+      std::make_shared<juce::AudioProcessorValueTreeState::SliderAttachment>(
+          parameters, x_slider_name, _x_slider);
 
   _x_slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxRight,
                             false, 80, 20);
   _x_slider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
   addAndMakeVisible(_x_slider);
-  _slider.SetXSlider(&_x_slider);
 
   _y_slider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
   addAndMakeVisible(_y_slider);
 
   _y_slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxLeft,
                             false, 80, 20);
-
   _y_slider_attachement =
       std::make_shared<juce::AudioProcessorValueTreeState::SliderAttachment>(
           parameters, y_slider_name, _y_slider);
 
-  _x_slider_attachement =
-      std::make_shared<juce::AudioProcessorValueTreeState::SliderAttachment>(
-          parameters, x_slider_name, _x_slider);
+  _slider.SetXSlider(&_x_slider);
+  _slider.SetYSlider(&_y_slider);
 }
 
 void Slider2D::resized() {
