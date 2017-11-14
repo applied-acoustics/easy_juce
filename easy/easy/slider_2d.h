@@ -174,7 +174,7 @@ void Slider2D::resized() {
   _x_slider.setBounds(_slider.getX(), _slider.getBottom() + 5,
                       _slider.getWidth() + 80, 20);
 
-  _y_slider.setBounds(_slider.getX() - 125, 0, 100, getHeight() - 25);
+  _y_slider.setBounds(_slider.getX() - 105, 0, 100, getHeight() - 25);
 }
 
 void Slider2D::paint(juce::Graphics &gc) { gc.fillAll({180, 180, 180}); }
