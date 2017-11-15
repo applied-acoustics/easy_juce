@@ -27,7 +27,7 @@ GainAudioProcessor::GainAudioProcessor()
 {
   addFloatParameter("Gain", 0.145f, 1.0f, 1.0f);
   addFloatParameter("Pan", 0.0f, 1.0f, 0.5f);
-  addIntParameter("Choice", 0, 2, 0);
+  addIndexedParameter("Choice", 2, 0);
   addFloatParameter("X", -1.0f, 1.0f, 0.0f);
   addFloatParameter("Y", 0.0f, 1.0f, 0.5f);
   addIntParameter("Active", 0, 1, 1);

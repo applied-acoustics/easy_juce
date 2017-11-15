@@ -5,8 +5,7 @@ namespace easy {
 class AudioProcessor : public juce::AudioProcessor,
                        public juce::AudioProcessorValueTreeState::Listener {
 public:
-  inline AudioProcessor() : _parameters(*this, nullptr) {
-  }
+  inline AudioProcessor() : _parameters(*this, nullptr) {}
 
   inline AudioProcessor(const juce::AudioProcessor::BusesProperties &ioLayouts)
       : juce::AudioProcessor(ioLayouts), _parameters(*this, nullptr) {}
@@ -19,6 +18,9 @@ public:
 
   inline void addIntParameter(const juce::String &name, int min_value,
                               int max_value, int default_value);
+
+  inline void addIndexedParameter(const juce::String &name, int size,
+                                  int default_value);
 
   inline juce::AudioProcessorValueTreeState &getParametersState() {
     return _parameters;
@@ -100,6 +102,15 @@ void AudioProcessor::addIntParameter(const juce::String &name, int min_value,
   _parameters.createAndAddParameter(
       name, name, name,
       juce::NormalisableRange<float>((float)min_value, (float)max_value),
+      (float)default_value, nullptr, nullptr, false, true, false);
+  _parameters.addParameterListener(name, this);
+}
+
+void AudioProcessor::addIndexedParameter(const juce::String &name, int size,
+                                         int default_value) {
+  _parameters.createAndAddParameter(
+      name, name, name,
+      juce::NormalisableRange<float>((float)0, (float)(size - 1)),
       (float)default_value, nullptr, nullptr, false, true, false);
   _parameters.addParameterListener(name, this);
 }
